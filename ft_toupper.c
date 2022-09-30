@@ -5,16 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ycanga <ycanga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 18:52:02 by ycanga            #+#    #+#             */
-/*   Updated: 2022/03/02 21:08:11 by ycanga           ###   ########.fr       */
+/*   Created: 2022/08/28 19:33:45 by ycanga            #+#    #+#             */
+/*   Updated: 2022/08/28 19:33:46 by ycanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_toupper(int c)
+int	ft_toupper(int x)
 {
-	if (c <= 'z' && c >= 'a')
-		c -= 32;
-	return (c);
+	if (x >= 'a' && x <= 'z')
+		return (x - 32);
+	return (x);
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ycanga <ycanga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/16 20:23:36 by ycanga            #+#    #+#             */
-/*   Updated: 2022/02/21 15:27:17 by ycanga           ###   ########.fr       */
+/*   Created: 2022/08/28 19:31:58 by ycanga            #+#    #+#             */
+/*   Updated: 2022/08/28 19:31:59 by ycanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,3 @@ void	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
 }
-
-// #include <stdio.h>
-// int main()
-// {
-// 	char a='e';
-
-// 	ft_putchar_fd('a', 0);
-// }

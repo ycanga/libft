@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ycanga <ycanga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 19:09:20 by ycanga            #+#    #+#             */
-/*   Updated: 2022/03/01 19:30:29 by ycanga           ###   ########.fr       */
+/*   Created: 2022/08/28 19:33:05 by ycanga            #+#    #+#             */
+/*   Updated: 2022/08/28 19:33:08 by ycanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,22 @@
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	unsigned int	i;
-	char			*a;
+	char	*str;
+	size_t	i;
+	size_t	len;
 
-	i = 0;
 	if (!s)
-		return (0);
-	a = malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (a == 0)
-		return (0);
+		return (NULL);
 	i = 0;
-	while (i < ft_strlen(s))
+	len = ft_strlen(s);
+	str = malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
+	while (s[i])
 	{
-		a[i] = f(i, s[i]);
+		str[i] = f(i, s[i]);
 		i++;
 	}
-	a[i] = '\0';
-	return (a);
+	str[i] = '\0';
+	return (str);
 }
-
-// #include<stdio.h>
-// char f(unsigned int a, char s)
-// {
-// 	a=32;	
-// 	return(s-a);
-// }
-// int main()
-// {
-// 	printf("%s",ft_strmapi("ecole", f));
-//     ;
-// }

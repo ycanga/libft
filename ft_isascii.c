@@ -5,21 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ycanga <ycanga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/16 16:44:19 by ycanga            #+#    #+#             */
-/*   Updated: 2022/03/01 20:21:43 by ycanga           ###   ########.fr       */
+/*   Created: 2022/08/28 19:26:40 by ycanga            #+#    #+#             */
+/*   Updated: 2022/08/28 19:26:41 by ycanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isascii(int c)
+int	ft_isascii(int str)
 {
-	if (c >= 0 && c <= 127)
+	if (str >= 0 && str <= 127)
 		return (1);
 	return (0);
 }
-
-// int main()
-// {
-//     printf("%d", ft_isascii(128));
-// }

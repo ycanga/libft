@@ -5,76 +5,63 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ycanga <ycanga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/21 15:37:46 by ycanga            #+#    #+#             */
-/*   Updated: 2022/03/02 21:09:30 by ycanga           ###   ########.fr       */
+/*   Created: 2022/08/28 19:32:21 by ycanga            #+#    #+#             */
+/*   Updated: 2022/08/28 19:32:22 by ycanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	if_word_len(char const *s, char c)
+size_t	ft_wordcount(char const *s, char c)
 {
-	size_t	len;
+	size_t	i;
 
-	len = 0;
-	while (s[len] != '\0' && s[len] != c)
-		len++;
-	return (len);
+	i = 0;
+	while (*s)
+	{
+		if (*s && *s != c)
+			i++;
+		while (*s && *s != c)
+			s++;
+		if (*s && *s == c)
+			s++;
+	}
+	return (i);
 }
 
-static size_t	len_word(char const *s, char c)
+int	ft_errorcheck(const char *s, size_t *count, char c, char ***str)
 {
-	size_t	len;
-
-	len = 0;
-	while (*s != '\0')
-	{
-		if (*s != c && (s[1] == '\0' || s[1] == c))
-			len++;
-		s++;
-	}
-	return (len);
+	if (!s)
+		return (0);
+	*count = ft_wordcount(s, c);
+	*str = malloc ((*count + 1) * sizeof(char *));
+	if (!*str)
+		return (0);
+	return (1);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**res;
-	size_t	index;
-	size_t	two_index;
-	size_t	word_len;
+	char	**str;
+	size_t	i;
+	size_t	j;
+	size_t	count;
 
-	if (!s)
+	if (!ft_errorcheck (s, &count, c, &str))
 		return (NULL);
-	word_len = len_word(s, c);
-	res = (char **)malloc(sizeof(char *) * word_len + 1);
-	if (res == NULL)
-		return (NULL);
-	index = 0;
-	while (index < word_len)
+	j = 0;
+	while (*s)
 	{
-		while (*s == c && *s != '\0')
-			s++;
-		res[index] = (char *)malloc(sizeof(char) * if_word_len(s, c) + 1);
-		two_index = 0;
-		while (*s != c && *s != '\0')
-			res[index][two_index++] = *s++;
-		res[index][two_index] = '\0';
-		index++;
+		i = 0;
+		while (s[i] && s[i] != c)
+			i++;
+		if (i != 0 && j < count)
+		{
+			str[j] = ft_substr (s, 0, i);
+			j++;
+		}
+		s += i + 1;
 	}
-	res[index] = NULL;
-	return (res);
+	str[count] = NULL;
+	return (str);
 }
-
-// #include <stdio.h>
-// int main()
-// {
-// 	char *s="ecole,42";
-// 	char **res=ft_split(s,',');
-// 	int i=0;
-
-// 	while (res[i])
-// 	{
-// 		printf("%s\n",res[i]);
-// 		res++;
-// 	}
-// }

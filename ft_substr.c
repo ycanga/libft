@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ycanga <ycanga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 18:52:35 by ycanga            #+#    #+#             */
-/*   Updated: 2022/03/02 21:11:23 by ycanga           ###   ########.fr       */
+/*   Created: 2022/08/28 19:33:34 by ycanga            #+#    #+#             */
+/*   Updated: 2022/08/28 19:33:35 by ycanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,25 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*res;
-	size_t	i;
+	char		*str;
+	size_t		i;
+	size_t		x;
 
+	i = start;
+	x = 0;
 	if (!s)
-		return (0);
-	if (ft_strlen(s) < len)
+		return (NULL);
+	if (len > ft_strlen(s))
 		len = ft_strlen(s);
-	if (start >= ft_strlen(s))
-		return (ft_strdup(""));
-	res = (char *)malloc(sizeof(char) * (len + 1));
-	if (!res)
-		return (0);
-	i = 0;
-	while (len)
+	str = (char *)malloc((len + 1) * sizeof(char));
+	if (!str || !s)
+		return (NULL);
+	while (i <= ft_strlen(s) && len > x)
 	{
-		res[i] = s[start + i];
+		str[x] = s[i];
+		x++;
 		i++;
-		len--;
 	}
-	res[i] = '\0';
-	return (res);
+	str[x] = '\0';
+	return (str);
 }
-
-// #include <stdio.h>
-// int main()
-// {
-//     printf("%s", ft_substr("ecole", 0, 2));
-// }

@@ -5,21 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ycanga <ycanga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/16 16:44:14 by ycanga            #+#    #+#             */
-/*   Updated: 2022/03/02 21:04:23 by ycanga           ###   ########.fr       */
+/*   Created: 2022/08/28 19:26:31 by ycanga            #+#    #+#             */
+/*   Updated: 2022/08/28 19:26:32 by ycanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalpha(int c)
+int	ft_isalpha(int str)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+	if ((str >= 'a' && str <= 'z') || (str >= 'A' && str <= 'Z'))
 		return (1);
 	return (0);
 }
-
-// int main()
-// {
-//     printf("%d", ft_isalpha(91));
-// }

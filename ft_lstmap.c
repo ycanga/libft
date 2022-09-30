@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ycanga <ycanga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/28 19:31:53 by ycanga            #+#    #+#             */
-/*   Updated: 2022/08/28 19:31:54 by ycanga           ###   ########.fr       */
+/*   Created: 2022/08/28 19:29:34 by ycanga            #+#    #+#             */
+/*   Updated: 2022/08/28 19:29:35 by ycanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void(*del)(void *))
 {
-	unsigned char	*dest;
-	size_t			i;
+	t_list	*iter;
+	t_list	*newlist;
 
-	dest = (unsigned char *)b;
-	i = 0;
-	while (i < len)
+	if (!lst)
+		return (NULL);
+	newlist = 0;
+	while (lst)
 	{
-		dest[i] = c;
-		i++;
+		iter = ft_lstnew(f(lst -> content));
+		if (!iter)
+		{
+			ft_lstclear (&newlist, del);
+			return (NULL);
+		}
+		ft_lstadd_back (&newlist, iter);
+		lst = lst -> next;
 	}
-	return (b);
+	return (newlist);
 }

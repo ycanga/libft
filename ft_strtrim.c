@@ -5,33 +5,50 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ycanga <ycanga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 18:53:17 by ycanga            #+#    #+#             */
-/*   Updated: 2022/03/02 21:10:59 by ycanga           ###   ########.fr       */
+/*   Created: 2022/08/28 19:33:27 by ycanga            #+#    #+#             */
+/*   Updated: 2022/08/28 19:33:28 by ycanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+int	checker(char c, char const *s2)
 {
-	size_t	set_start_index;
-	size_t	set_end_index;
+	int	i;
 
-	if (!s1 || !set)
-		return (NULL);
-	set_start_index = 0;
-	set_end_index = ft_strlen((char *) s1);
-	while (ft_strchr(set, s1[set_start_index]) && s1[set_start_index] != '\0')
-		set_start_index++;
-	while (ft_strchr(set, s1[set_end_index]) && set_end_index != '\0')
-		set_end_index--;
-	if ((int)(set_end_index - set_start_index + 1) <= 0)
-		return (ft_calloc(1, 1));
-	return (ft_substr(s1, set_start_index, \
-	(set_end_index - set_start_index) + 1));
+	i = 0;
+	while (s2[i])
+	{
+		if (s2[i++] == c)
+			return (1);
+	}
+	return (0);
 }
 
-// #include<stdio.h>
-// int main() {
-//    printf("%s\n", ft_strtrim("   Ecole 42   ", " "));
-// }
+char	*ft_strtrim(char const *s1, char const *s2)
+{
+	char	*str;
+	int		i;
+	int		j;
+	int		k;
+
+	i = 0;
+	k = 0;
+	if (s1 == 0 || s2 == 0)
+		return (NULL);
+	j = ft_strlen(s1);
+	while (s1[i] && checker(s1[i], s2))
+		i++;
+	while (j > i && checker(s1[j - 1], s2))
+		j--;
+	str = (char *)malloc(sizeof(char) * (j - i + 1));
+	if (!str)
+	{
+		free(str);
+		return (NULL);
+	}
+	while (i < j)
+		str[k++] = s1[i++];
+	str[k] = '\0';
+	return (str);
+}

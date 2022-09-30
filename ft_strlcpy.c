@@ -5,42 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ycanga <ycanga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/02 20:57:38 by ycanga            #+#    #+#             */
-/*   Updated: 2022/03/02 20:57:40 by ycanga           ###   ########.fr       */
+/*   Created: 2022/08/28 19:32:55 by ycanga            #+#    #+#             */
+/*   Updated: 2022/08/28 19:32:56 by ycanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcpy(char *dst, const char *src, size_t len)
 {
-	size_t	srcsize;
-	size_t	j;
+	size_t	i;
+	size_t	srclen;
+	size_t	destlen;
 
-	j = 0;
-	srcsize = 0;
-	if (!dstsize)
-		return (ft_strlen(src));
-	srcsize = ft_strlen(src);
-	if (dstsize != 0)
+	i = 0;
+	srclen = ft_strlen(src);
+	destlen = ft_strlen(dst);
+	if (len > 0)
 	{
-		while (j < dstsize - 1 && src[j])
+		while (src[i] && i < len - 1 && len)
 		{
-			((char *)dst)[j] = ((const char *)src)[j];
-			j++;
+			dst[i] = src[i];
+			i++;
 		}
-		dst[j] = '\0';
+		dst[i] = '\0';
 	}
-	return (srcsize);
+	return (srclen);
 }
-
-// #include <stdio.h>
-// int main()
-// {
-// 	char dest[]="";
-// 	char src[]="ecole42";
-// 	int size;
-
-// 	size=2;
-// 	printf("%zu",ft_strlcpy(dest,src,size));
-// }

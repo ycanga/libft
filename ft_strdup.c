@@ -5,34 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ycanga <ycanga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/02 20:57:52 by ycanga            #+#    #+#             */
-/*   Updated: 2022/03/02 20:57:53 by ycanga           ###   ########.fr       */
+/*   Created: 2022/08/28 19:32:29 by ycanga            #+#    #+#             */
+/*   Updated: 2022/08/28 19:32:30 by ycanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
+char	*ft_strdup(const char *s1)
 {
-	char	*s2;
+	char	*str;
 	size_t	i;
-	size_t	j;
 
-	j = 0;
-	i = ft_strlen(s) + 1;
-	s2 = (char *)malloc(sizeof(char) * i);
-	if (!s || !s2)
-		return (0);
-	while (i > j)
+	str = (char *)malloc(sizeof(char) * ft_strlen(s1) + 1);
+	if (str == NULL)
+		return (NULL);
+	i = 0;
+	while (s1[i])
 	{
-		((unsigned char *)s2)[j] = ((unsigned char *)s)[j];
-		j++;
+		str[i] = s1[i];
+		i++;
 	}
-	return (s2);
+	str[i] = '\0';
+	return (str);
 }
-
-// #include <stdio.h>
-// int main()
-// {
-// 	printf("%s",ft_strdup("ecole"));
-// }

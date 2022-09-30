@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ycanga <ycanga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 19:09:30 by ycanga            #+#    #+#             */
-/*   Updated: 2022/03/01 19:32:36 by ycanga           ###   ########.fr       */
+/*   Created: 2022/08/28 19:33:00 by ycanga            #+#    #+#             */
+/*   Updated: 2022/08/28 19:33:01 by ycanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,10 @@
 
 size_t	ft_strlen(const char *s)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (s[i] != 0)
+	while (s[i])
 		i++;
 	return (i);
 }
-
-// #include<stdio.h>
-// int main()
-// {
-// 	char *s="ecole42";
-// 	printf("%zu",ft_strlen(s));
-// }

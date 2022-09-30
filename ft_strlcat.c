@@ -5,39 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ycanga <ycanga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 20:16:24 by ycanga            #+#    #+#             */
-/*   Updated: 2022/03/01 20:19:40 by ycanga           ###   ########.fr       */
+/*   Created: 2022/08/28 19:32:51 by ycanga            #+#    #+#             */
+/*   Updated: 2022/08/28 19:32:52 by ycanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
 	size_t	i;
-	size_t	len;
+	size_t	dsize;
 
-	len = ft_strlen(dst);
-	i = 0;
-	if (len >= size)
-		return (size + ft_strlen(src));
-	while (src[i] != 0 && len < size - 1)
+	dsize = 0;
+	while (dest[dsize] != '\0' && dsize < size)
+		dsize++;
+	i = dsize;
+	while (src[dsize - i] && dsize + 1 < size)
 	{
-		dst[len] = src[i];
-		i++;
-		len++;
+		dest[dsize] = src[dsize - i];
+		dsize++;
 	}
-	dst[len] = 0;
-	return (ft_strlen(dst) + ft_strlen(&src[i]));
+	if (i < size)
+		dest[dsize] = '\0';
+	return (i + ft_strlen(src));
 }
-
-// #include<stdio.h>
-// int main()
-// {
-// 	char dest[]="ee";
-// 	char src[]="ecole42";
-// 	size_t i;
-
-// 	i=5;
-// 	printf("%zu",ft_strlcat(dest,src,i));
-// }

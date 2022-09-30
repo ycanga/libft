@@ -5,67 +5,66 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ycanga <ycanga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/16 16:44:47 by ycanga            #+#    #+#             */
-/*   Updated: 2022/03/02 21:09:10 by ycanga           ###   ########.fr       */
+/*   Created: 2022/08/28 19:28:16 by ycanga            #+#    #+#             */
+/*   Updated: 2022/08/28 19:28:17 by ycanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_calculate(int number)
+int	len(int n)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	if (number == 0)
-		i++;
-	while (number)
+	if (n <= 0)
+		i = 1;
+	while (n)
 	{
-		number /= 10;
+		n /= 10;
 		i++;
 	}
 	return (i);
 }
 
-char	*ft_add(long number, size_t size, int control)
+char	*inttostr(int n, int *f)
 {
-	char	*add;
+	int		leng;
+	char	*str;
 
-	add = malloc(sizeof(char) * (size + 1));
-	if (!add)
-		return (0);
-	add[size] = 0;
-	while (size > 0)
+	leng = len(n);
+	str = (char *)malloc((sizeof(char) * leng) + 1);
+	if (!str)
+		return (NULL);
+	if (n < 0)
 	{
-		add[--size] = (number % 10 + '0');
-		number /= 10;
+		*f = -1;
+		str[0] = '-';
 	}
-	if (control == 1)
-		add[0] = '-';
-	return (add);
+	str[leng] = 0;
+	return (str);
 }
 
 char	*ft_itoa(int n)
 {
-	long	number;
-	size_t	size;
-	char	*add;
-	int		control;
+	char	*str;
+	int		i;
+	int		f;
 
-	control = 0;
-	number = n;
-	size = ft_calculate(number);
-	if (n < 0)
+	f = 1;
+	i = len(n);
+	str = inttostr(n, &f);
+	if (!str)
+		return (NULL);
+	if (n == 0)
 	{
-		size++;
-		number *= -1;
-		control = 1;
+		*str = '0';
+		return (str);
 	}
-	add = ft_add(number, size, control);
-	return (add);
+	while (n)
+	{
+		str[--i] = '0' + f * (n % 10);
+		n /= 10;
+	}
+	return (str);
 }
-
-// int main()
-// {
-//     printf("%s", ft_itoa(-4567));
-// }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ycanga <ycanga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/23 17:45:16 by ycanga            #+#    #+#             */
-/*   Updated: 2022/02/23 19:02:47 by ycanga           ###   ########.fr       */
+/*   Created: 2022/08/28 19:32:25 by ycanga            #+#    #+#             */
+/*   Updated: 2022/08/28 19:32:26 by ycanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,13 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	while (*s != '\0' && *s != (char)c)
+	while (*s)
+	{
+		if (*s == (char)c)
+			return ((char *)s);
 		s++;
-	if (*s == (char)c)
+	}
+	if (c == 0)
 		return ((char *)s);
-	return (0);
+	return (NULL);
 }
-
-// #include <stdio.h>
-// int main()
-// {
-// 	char *s="ecole";
-// 	char i='o';
-
-// 	printf("%s",ft_strchr(s,i));
-// }

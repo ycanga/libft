@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ycanga <ycanga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 01:22:03 by ycanga            #+#    #+#             */
-/*   Updated: 2022/02/23 19:12:32 by ycanga           ###   ########.fr       */
+/*   Created: 2022/08/28 19:32:15 by ycanga            #+#    #+#             */
+/*   Updated: 2022/08/28 19:32:16 by ycanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,7 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	if (!s || fd < 0)
+	if (!s)
 		return ;
-	while (*s)
-	{
-		write(fd, s, 1);
-		s++;
-	}
+	write(fd, s, ft_strlen(s));
 }
-
-// int main()
-// {
-// 	char *s="ecole";
-// 	ft_putstr_fd(s,0);
-// }

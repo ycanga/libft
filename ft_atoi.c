@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ycanga <ycanga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/16 16:43:24 by ycanga            #+#    #+#             */
-/*   Updated: 2022/03/02 21:03:18 by ycanga           ###   ########.fr       */
+/*   Created: 2022/08/28 18:38:38 by ycanga            #+#    #+#             */
+/*   Updated: 2022/08/28 18:38:39 by ycanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,29 @@
 
 int	ft_atoi(const char *str)
 {
-	int			neg;
-	long int	res;
+	int		i;
+	int		sign;
+	long	number;
 
-	neg = 1;
-	res = 0;
-	while ((*str >= '\t' && *str <= '\r') || *str == ' ')
-		str++;
-	if (*str == '+' || *str == '-')
+	sign = 1;
+	number = 0;
+	i = 0;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (*str == '-')
-			neg *= -1;
-		str++;
+		if (str[i] == '-')
+			sign = -1;
+		i++;
 	}
-	while (*str >= 48 && *str <= 57)
+	while (ft_isdigit(str[i]))
 	{
-		res = (res * 10) + (*str - 48);
-		str++;
-		if (res * neg > 2147483647)
+		number = (number * 10) + (str[i] - 48) * sign;
+		if (number > 2147483647)
 			return (-1);
-		if (res * neg < -2147483648)
+		if (number < -2147483648)
 			return (0);
-	}	
-	return (res * neg);
+		i++;
+	}
+	return (number);
 }
-
-// #include <stdio.h>
-// int main()
-// {
-//     printf("%d\n", ft_atoi("!1231"));
-//     printf("%d\n", ft_atoi("1"));
-//     //printf("%d", atoi("!-1231"));
-//     return (0);
-// }

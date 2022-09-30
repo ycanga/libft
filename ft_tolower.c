@@ -5,14 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ycanga <ycanga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 18:52:29 by ycanga            #+#    #+#             */
-/*   Updated: 2022/03/02 21:07:53 by ycanga           ###   ########.fr       */
+/*   Created: 2022/08/28 19:33:40 by ycanga            #+#    #+#             */
+/*   Updated: 2022/08/28 19:33:41 by ycanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_tolower(int c)
+#include "libft.h"
+
+int	ft_tolower(int x)
 {
-	if (c <= 'Z' && c >= 'A')
-		c += 32;
-	return (c);
+	if (x >= 'A' && x <= 'Z')
+		return (x + 32);
+	return (x);
 }
